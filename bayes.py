@@ -1,6 +1,5 @@
 #Bayes Rule calculator with specific hypothesis
 import numpy as np
-import pandas as pd
 
 def GetHypothesis():
 	flag = True
