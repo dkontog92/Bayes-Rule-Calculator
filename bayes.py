@@ -1,5 +1,4 @@
 #Bayes Rule calculator with specific hypothesis
-#Bayes Rule calculator with specific hypothesis
 import numpy as np
 
 def GetHypothesis():
