@@ -1,11 +1,12 @@
 #Bayes Rule calculator with specific hypothesis
+#Bayes Rule calculator with specific hypothesis
 import numpy as np
 
 def GetHypothesis():
 	flag = True
 	while flag:
 		try:
-			NumOfHypothesis = int(input('Enter the number of hypothesis: '))
+			NumOfHypothesis = int(input('Enter the number of hypotheses: '))
 			flag = False
 		except ValueError:
 			print('Oops!  That was no valid number.  Try again...')
@@ -29,10 +30,10 @@ def GetPriors(num_hypothesis):
 def GetEventConditionals(num_hypothesis):
 	
 	conditionals = np.zeros(num_hypothesis)
+	print('\nENTER THE CONDITIONAL PROBABILITIES (Likelihoods) OF THE EVENT OCCURING GIVEN EACH HYPOTHESIS\n')
 	for i in range(len(conditionals)):
-		conditionals[i] = float(input('Enter the probability of the event given hypothesis %d P(E|H%d): '% ((i+1),(i+1))))
+		conditionals[i] = float(input('P(E|H%d): '% (i+1)))
 	
-	print(conditionals)
 	return conditionals
 	
 	
@@ -44,7 +45,8 @@ def MoreEvents(posterior, num_hypothesis):
 			conds = GetEventConditionals(num_hypothesis)
 			posterior = posterior*conds/np.sum(posterior*conds)
 			print('\nThe new posterior probabilities for the hypotheses are:')
-			print(posterior)
+			for hypo in range(num_hypothesis):
+				print('Hypothesis %d: %.3f' % ((hypo+1), posterior[hypo]))
 		elif moreEvents == 'n':
 			flag = False
 		else:
@@ -60,7 +62,10 @@ if __name__ == '__main__':
 	
 	posterior = priors*conds/np.sum(priors*conds)
 	print('\nThe posterior probabilities for the hypotheses are:')
-	print(posterior)
+	for hypo in range(num_hypothesis):
+		print('Hypothesis %d: %.3f' % ((hypo+1), posterior[hypo]))
+	
+	#print(posterior)
 	
 	MoreEvents(posterior, num_hypothesis)
 	
